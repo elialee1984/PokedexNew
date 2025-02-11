@@ -13,7 +13,7 @@ const PokemonDetails = ({ pokemonId }) => {
   const [typeTwo, setTypeTwo] = useState("");
   const [abilityOne, setAbilityOne] = useState("");
   const [abilityTwo, setAbilityTwo] = useState("");
-  const [abilityThree, setAbilityThree] = useState(""); // might be unnecessary
+  const [abilityThree, setAbilityThree] = useState("");
 
   useEffect(() => {
     const fetchPokemonDetails = async () => {
@@ -50,21 +50,21 @@ const PokemonDetails = ({ pokemonId }) => {
         if (response.abilities[0]) {
           setAbilityOne(
             response.abilities[0].ability.name[0].toUpperCase() +
-            response.abilities[0].ability.name.slice(1)
+              response.abilities[0].ability.name.slice(1)
           );
         }
         if (response.abilities[1]) {
           setAbilityTwo(
             response.abilities[1].ability.name[0].toUpperCase() +
-            response.abilities[1].ability.name.slice(1)
+              response.abilities[1].ability.name.slice(1)
           );
         }
         if (response.abilities[2]) {
-          setAbilityTwo(
+          setAbilityThree(
             response.abilities[2].ability.name[0].toUpperCase() +
-            response.abilities[2].ability.name.slice(1)
+              response.abilities[2].ability.name.slice(1)
           );
-        } // might be unnecessary
+        }
       } else {
         console.error("Types not found in response:", response);
       }
@@ -81,7 +81,12 @@ const PokemonDetails = ({ pokemonId }) => {
         pkmnBackShinySprite={pkmnBackShinySprite}
       />
       <PokemonTypes typeOne={typeOne} typeTwo={typeTwo} />
-      <PokemonAbilities abilityOne={abilityOne} abilityTwo={abilityTwo} abilityThree={abilityThree}/>
+      <PokemonStatusses />
+      <PokemonAbilities
+        abilityOne={abilityOne}
+        abilityTwo={abilityTwo}
+        abilityThree={abilityThree}
+      />
     </div>
   );
 };

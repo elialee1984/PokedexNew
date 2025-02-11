@@ -7,7 +7,7 @@ import PokemonNames from "./PokemonNames";
 const PokemonCard = ({ currentPage, pokemonPerPage }) => {
   const navigate = useNavigate();
   const [currentPageState, setCurrentPageState] = useState(currentPage);
-  const [offset, setOffset] = useState(608);
+  const [offset, setOffset] = useState(145);
   const [limit, setLimit] = useState(10);
 
   const [pokemons, setPokemons] = useState([]);
