@@ -7,7 +7,7 @@ import PokemonNames from "./PokemonNames";
 const PokemonCard = ({ currentPage, pokemonPerPage }) => {
   const navigate = useNavigate();
   const [currentPageState, setCurrentPageState] = useState(currentPage);
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(608);
   const [limit, setLimit] = useState(10);
 
   const [pokemons, setPokemons] = useState([]);
@@ -38,28 +38,6 @@ const PokemonCard = ({ currentPage, pokemonPerPage }) => {
 
     getData();
   }, []);
-
-  //   useEffect(() => {
-  //     const fetchPokemonDetails = async () => {
-  //       const typesMap = {};
-  //       for (let pokemon of pokemons) {
-  //         const pokemonId =
-  //           pokemon.url.split("/")[pokemon.url.split("/").length - 2];
-  //         const data = await fetch(
-  //           `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`
-  //         );
-  //         const response = await data.json();
-  //         if (response) {
-  //           typesMap[pokemon.name] = response.types;
-  //         } else {
-  //           console.error("Types not found in response:", response);
-  //         }
-  //       }
-  //       setPokemonTypes(typesMap);
-  //     };
-
-  //     fetchPokemonDetails();
-  //   }, [pokemons]);
 
   return (
     <div>

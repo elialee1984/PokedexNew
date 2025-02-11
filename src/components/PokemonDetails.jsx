@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 
+import PokemonAbilities from "./PokemonAbilities";
 import PokemonSprites from "./PokemonSprites";
 import PokemonTypes from "./PokemonTypes";
 
 const PokemonDetails = ({ pokemonId }) => {
-  const [typeOne, setTypeOne] = useState("");
-  const [typeTwo, setTypeTwo] = useState("");
   const [pkmnFrontDefaultSprite, setPkmnFrontDefaultSprite] = useState();
   const [pkmnBackDefaultSprite, setPkmnBackDefaultSprite] = useState();
   const [pkmnFrontShinySprite, setPkmnFrontShinySprite] = useState();
   const [pkmnBackShinySprite, setPkmnBackShinySprite] = useState();
+  const [typeOne, setTypeOne] = useState("");
+  const [typeTwo, setTypeTwo] = useState("");
+  const [abilityOne, setAbilityOne] = useState("");
+  const [abilityTwo, setAbilityTwo] = useState("");
+  const [abilityThree, setAbilityThree] = useState(""); // might be unnecessary
 
   useEffect(() => {
     const fetchPokemonDetails = async () => {
@@ -17,12 +21,8 @@ const PokemonDetails = ({ pokemonId }) => {
         `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`
       );
       const response = await data.json();
-      console.log(response);
+      // console.log(response);
       if (response) {
-        setTypeOne(
-          response.types[0].type.name[0].toUpperCase() +
-            response.types[0].type.name.slice(1)
-        );
         if (response.sprites.front_default) {
           setPkmnFrontDefaultSprite(response.sprites.front_default);
         }
@@ -35,12 +35,36 @@ const PokemonDetails = ({ pokemonId }) => {
         if (response.sprites.back_shiny) {
           setPkmnBackShinySprite(response.sprites.back_shiny);
         }
+        if (response.types[0]) {
+          setTypeOne(
+            response.types[0].type.name[0].toUpperCase() +
+              response.types[0].type.name.slice(1)
+          );
+        }
         if (response.types[1]) {
           setTypeTwo(
             response.types[1].type.name[0].toUpperCase() +
               response.types[1].type.name.slice(1)
           );
         }
+        if (response.abilities[0]) {
+          setAbilityOne(
+            response.abilities[0].ability.name[0].toUpperCase() +
+            response.abilities[0].ability.name.slice(1)
+          );
+        }
+        if (response.abilities[1]) {
+          setAbilityTwo(
+            response.abilities[1].ability.name[0].toUpperCase() +
+            response.abilities[1].ability.name.slice(1)
+          );
+        }
+        if (response.abilities[2]) {
+          setAbilityTwo(
+            response.abilities[2].ability.name[0].toUpperCase() +
+            response.abilities[2].ability.name.slice(1)
+          );
+        } // might be unnecessary
       } else {
         console.error("Types not found in response:", response);
       }
@@ -50,13 +74,14 @@ const PokemonDetails = ({ pokemonId }) => {
 
   return (
     <div>
-      <PokemonTypes typeOne={typeOne} typeTwo={typeTwo} />
       <PokemonSprites
         pkmnFrontDefaultSprite={pkmnFrontDefaultSprite}
         pkmnBackDefaultSprite={pkmnBackDefaultSprite}
         pkmnFrontShinySprite={pkmnFrontShinySprite}
         pkmnBackShinySprite={pkmnBackShinySprite}
       />
+      <PokemonTypes typeOne={typeOne} typeTwo={typeTwo} />
+      <PokemonAbilities abilityOne={abilityOne} abilityTwo={abilityTwo} abilityThree={abilityThree}/>
     </div>
   );
 };
