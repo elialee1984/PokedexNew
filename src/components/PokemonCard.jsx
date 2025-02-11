@@ -7,11 +7,10 @@ import PokemonNames from "./PokemonNames";
 const PokemonCard = ({ currentPage, pokemonPerPage }) => {
   const navigate = useNavigate();
   const [currentPageState, setCurrentPageState] = useState(currentPage);
-  const [offset, setOffset] = useState(1000);
+  const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(10);
 
   const [pokemons, setPokemons] = useState([]);
-  const [pokemonTypes, setPokemonTypes] = useState({});
   const [pokemonDetailsIndex, setPokemonDetailsIndex] = useState([]);
 
   useEffect(() => {
