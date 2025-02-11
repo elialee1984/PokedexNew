@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const PokemonTypes = ({ pokemonId }) => {
+const PokemonDetails = ({ pokemonId }) => {
   const [typeOne, setTypeOne] = useState("");
   const [typeTwo, setTypeTwo] = useState("");
 
@@ -42,4 +42,4 @@ const PokemonTypes = ({ pokemonId }) => {
   );
 };
 
-export default PokemonTypes;
+export default PokemonDetails;
